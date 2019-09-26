@@ -1,15 +1,15 @@
 package com.kellton.mvvmtest1.model;
 
-public class places {
+public class Places {
     private String placeName;
     private String imageUrl;
 
-    public places(String placeName, String imageUrl) {
+    public Places(String placeName, String imageUrl) {
         this.placeName = placeName;
         this.imageUrl = imageUrl;
     }
 
-    public places() {
+    public Places() {
     }
 
     public String getPlaceName() {

@@ -1,6 +1,9 @@
 package com.kellton.mvvmtest1;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -11,6 +14,7 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.kellton.mvvmtest1.viewmodels.MainActivityViewModel;
 
 import java.util.ArrayList;
 
@@ -24,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private RecyclerViewAdapter mAdapter;
     private FloatingActionButton fab;
-
+    private MainActivityViewModel mMainActivityViewModel;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -35,6 +39,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         mProgressBar = findViewById(R.id.progress_bar);
+        mRecyclerView = findViewById(R.id.recycler_view);
+        mAdapter = new RecyclerViewAdapter(this, imageName, imageUrl);
+        mMainActivityViewModel = ViewModelProviders.of(this).get(MainActivityViewModel.class);
         fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        initializeList();
+        //initializeList();
         initRecyclerView();
     }
 
@@ -101,8 +108,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void initRecyclerView(){
         Log.d(TAG, "initRecyclerView: ");
-        mRecyclerView = findViewById(R.id.recycler_view);
-        mAdapter = new RecyclerViewAdapter(this, imageName, imageUrl);
+
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
