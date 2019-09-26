@@ -65,6 +65,12 @@ public class MainActivity extends AppCompatActivity {
         imageName.add("Sikkim");
         imageUrl.add("https://static-blog.treebo.com/wp-content/uploads/2018/01/Sikkim.jpg");
 
+        imageUrl.add("https://i.redd.it/glin0nwndo501.jpg");
+        imageName.add("White Sands Desert");
+
+        imageUrl.add("https://c1.staticflickr.com/5/4636/25316407448_de5fbf183d_o.jpg");
+        imageName.add("Havasu Falls");
+
     }
 
     private void initRecyclerView(){

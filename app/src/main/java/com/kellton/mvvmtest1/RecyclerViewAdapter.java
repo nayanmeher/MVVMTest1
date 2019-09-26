@@ -1,6 +1,7 @@
 package com.kellton.mvvmtest1;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -50,11 +51,18 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 .load(mImages.get(position))
                 .into(holder.imageView);
         holder.tvCountryName.setText(mImageName.get(position));
+
+
         holder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Log.d(TAG, "onClick()::");
-                Toast.makeText(mContext, mImageName.get(position), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(mContext, mImageName.get(position), Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(mContext, Gallery.class);
+                intent.putExtra("image_name", mImageName.get(position));
+                intent.putExtra("image_url", mImages.get(position));
+                mContext.startActivity(intent);
+
             }
         });
     }
