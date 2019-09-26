@@ -38,8 +38,6 @@ public class Gallery extends AppCompatActivity {
                     .asBitmap()
                     .load(imageUrl)
                     .into(imageView);
-
-
         }
     }
 }

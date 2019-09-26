@@ -57,7 +57,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             @Override
             public void onClick(View view) {
                 Log.d(TAG, "onClick()::");
-                //Toast.makeText(mContext, mImageName.get(position), Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext, mImageName.get(position), Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(mContext, Gallery.class);
                 intent.putExtra("image_name", mImageName.get(position));
                 intent.putExtra("image_url", mImages.get(position));

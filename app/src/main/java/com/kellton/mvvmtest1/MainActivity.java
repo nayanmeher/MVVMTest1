@@ -6,6 +6,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ProgressBar;
+import android.widget.Toast;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
@@ -15,6 +20,10 @@ public class MainActivity extends AppCompatActivity {
 
     private ArrayList<String> imageUrl = new ArrayList<>();
     private ArrayList<String> imageName = new ArrayList<>();
+    private ProgressBar mProgressBar;
+    private RecyclerView mRecyclerView;
+    private RecyclerViewAdapter mAdapter;
+    private FloatingActionButton fab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,8 +33,25 @@ public class MainActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        mProgressBar = findViewById(R.id.progress_bar);
+        fab = findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getApplicationContext(), "adding new record.", Toast.LENGTH_SHORT).show();
+            }
+        });
+
         initializeList();
         initRecyclerView();
+    }
+
+    private void showProgressBar(){
+        mProgressBar.setVisibility(View.VISIBLE);
+    }
+    private void hideProgressBar(){
+        mProgressBar.setVisibility(View.GONE);
     }
 
     private void initializeList(){
@@ -75,10 +101,10 @@ public class MainActivity extends AppCompatActivity {
 
     private void initRecyclerView(){
         Log.d(TAG, "initRecyclerView: ");
-        RecyclerView recyclerView = findViewById(R.id.recycler_view);
-        RecyclerViewAdapter adapter = new RecyclerViewAdapter(this, imageName, imageUrl);
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mRecyclerView = findViewById(R.id.recycler_view);
+        mAdapter = new RecyclerViewAdapter(this, imageName, imageUrl);
+        mRecyclerView.setAdapter(mAdapter);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
 }
